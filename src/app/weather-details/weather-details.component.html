@@ -1,0 +1,31 @@
+<h2>Select City:</h2>
+
+<select [(ngModel)]="selectedCity"
+        (change)="getWeatherData($event.target.value)">
+  <option *ngFor="let city of allCities" [value]="city.name">{{city
+    .name}}</option>
+</select>
+
+
+<h2>Today's weather conditions of city <span class="cityName">{{selectedCity
+  }}</span>:</h2>
+<div *ngIf="!loader">
+  <p>Country Code: <b>{{cityData.country_code}}</b></p>
+  <p>Latitude: <b>{{cityData.lat}} Deg</b></p>
+  <p>Longitude: <b>{{cityData.lon}} Deg</b></p>
+  <p>Timezone: <b>{{cityData.timezone}}</b></p>
+  <p>Date and Time: <b>{{cityData.datetime}} (YYYY-MM-DD:HH)</b></p>
+  <p>Last observation time:
+    <b>{{cityData.ob_time | date: 'medium'}} (YYYY-MM-DD HH:MM)</b></p>
+  <p>Sunset Time: <b>{{cityData.sunset}} (HH:MM)</b></p>
+  <p>Sunrise Time: <b>{{cityData.sunrise}} (HH:MM)</b></p>
+  <p>Temparature: <b>{{cityData.temp}} C</b></p>
+  <p>Estimated Solar Radiation: <b>{{cityData.solar_rad}} (W/m^2)</b></p>
+  <p>Wind Direction: <b>{{cityData.wind_cdir_full}}</b></p>
+  <p>Wind Speed: <b>{{cityData.wind_spd}} m/s</b></p>
+  <p>Cloud Coverage: <b>{{cityData.clouds}}%</b></p>
+  <p>Pressure: <b>{{cityData.pres}} mb</b></p>
+  <p>Sea Level Pressure: <b>{{cityData.slp}} mb</b></p>
+  <p>Snowfall: <b>{{cityData.snow}} mm/hr</b></p>
+  <p>Relative humidity: <b>{{cityData.rh}}%</b></p>
+</div>
